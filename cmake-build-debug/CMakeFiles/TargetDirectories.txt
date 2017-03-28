@@ -1,3 +1,0 @@
-/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/cmake-build-debug/CMakeFiles/HX8537.dir
