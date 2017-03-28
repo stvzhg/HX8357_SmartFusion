@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/hx8537.c" "/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/cmake-build-debug/CMakeFiles/HX8537.dir/hx8537.c.o"
+  "/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/hx8357.c" "/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/cmake-build-debug/CMakeFiles/HX8537.dir/hx8357.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

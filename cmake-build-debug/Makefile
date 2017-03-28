@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/Chengming_Zhang/Google Drive/EECS373/HX8537"
+CMAKE_SOURCE_DIR = "/Users/Chengming_Zhang/Google Drive/EECS373/HX8357"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/cmake-build-debug"
+CMAKE_BINARY_DIR = "/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/cmake-build-debug/CMakeFiles" "/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/cmake-build-debug/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/cmake-build-debug/CMakeFiles" "/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/cmake-build-debug/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -123,32 +123,32 @@ HX8537/fast:
 	$(MAKE) -f CMakeFiles/HX8537.dir/build.make CMakeFiles/HX8537.dir/build
 .PHONY : HX8537/fast
 
-hx8537.o: hx8537.c.o
+hx8357.o: hx8357.c.o
 
-.PHONY : hx8537.o
+.PHONY : hx8357.o
 
 # target to build an object file
-hx8537.c.o:
-	$(MAKE) -f CMakeFiles/HX8537.dir/build.make CMakeFiles/HX8537.dir/hx8537.c.o
-.PHONY : hx8537.c.o
+hx8357.c.o:
+	$(MAKE) -f CMakeFiles/HX8537.dir/build.make CMakeFiles/HX8537.dir/hx8357.c.o
+.PHONY : hx8357.c.o
 
-hx8537.i: hx8537.c.i
+hx8357.i: hx8357.c.i
 
-.PHONY : hx8537.i
+.PHONY : hx8357.i
 
 # target to preprocess a source file
-hx8537.c.i:
-	$(MAKE) -f CMakeFiles/HX8537.dir/build.make CMakeFiles/HX8537.dir/hx8537.c.i
-.PHONY : hx8537.c.i
+hx8357.c.i:
+	$(MAKE) -f CMakeFiles/HX8537.dir/build.make CMakeFiles/HX8537.dir/hx8357.c.i
+.PHONY : hx8357.c.i
 
-hx8537.s: hx8537.c.s
+hx8357.s: hx8357.c.s
 
-.PHONY : hx8537.s
+.PHONY : hx8357.s
 
 # target to generate assembly for a file
-hx8537.c.s:
-	$(MAKE) -f CMakeFiles/HX8537.dir/build.make CMakeFiles/HX8537.dir/hx8537.c.s
-.PHONY : hx8537.c.s
+hx8357.c.s:
+	$(MAKE) -f CMakeFiles/HX8537.dir/build.make CMakeFiles/HX8537.dir/hx8357.c.s
+.PHONY : hx8357.c.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... HX8537"
-	@echo "... hx8537.o"
-	@echo "... hx8537.i"
-	@echo "... hx8537.s"
+	@echo "... hx8357.o"
+	@echo "... hx8357.i"
+	@echo "... hx8357.s"
 .PHONY : help
 
 

@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/cmake-build-debug"/>
+				<Option working_dir="/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/cmake-build-debug"/>
+				<Option working_dir="/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/cmake-build-debug"/>
+				<Option working_dir="/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="HX8537">
-				<Option output="/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/cmake-build-debug/libHX8537.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/cmake-build-debug"/>
+				<Option output="/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/cmake-build-debug/libHX8537.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
@@ -53,15 +53,15 @@
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 HX8537"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 HX8537"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="HX8537/fast">
-				<Option output="/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/cmake-build-debug/libHX8537.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/cmake-build-debug"/>
+				<Option output="/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/cmake-build-debug/libHX8537.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
@@ -75,20 +75,20 @@
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 HX8537/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8537/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 HX8537/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Chengming_Zhang/Google\ Drive/EECS373/HX8357/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/hx8537.c">
+		<Unit filename="/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/hx8357.c">
 			<Option target="HX8537"/>
 		</Unit>
-		<Unit filename="/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/hx8537.h">
+		<Unit filename="/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/hx8357.h">
 			<Option target="HX8537"/>
 		</Unit>
-		<Unit filename="/Users/Chengming_Zhang/Google Drive/EECS373/HX8537/CMakeLists.txt">
+		<Unit filename="/Users/Chengming_Zhang/Google Drive/EECS373/HX8357/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

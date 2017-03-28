@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/HX8537.dir/hx8537.c.o"
+  "CMakeFiles/HX8537.dir/hx8357.c.o"
   "libHX8537.pdb"
   "libHX8537.a"
 )
