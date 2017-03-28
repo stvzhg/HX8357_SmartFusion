@@ -1,7 +1,7 @@
 #ifndef HX8537_H
 #define HX8537_H
 
-#include "stdint.h"
+#include <inttypes.h>
 
 #if defined (__arm__) || defined(ARDUINO_STM32_FEATHER)
 #if defined(TEENSYDUINO)

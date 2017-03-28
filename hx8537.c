@@ -1,5 +1,5 @@
 #include "hx8537.h"
-#include "stdint.h"
+#include <inttypes.h>
 
 void spiwrite(uint8_t c) {
     if (_sclk == -1) {
