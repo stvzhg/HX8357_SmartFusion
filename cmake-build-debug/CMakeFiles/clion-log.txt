@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/Users/Chengming_Zhang/Google Drive/EECS373/HX8537"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/Chengming_Zhang/Google Drive/EECS373/HX8537/cmake-build-debug
