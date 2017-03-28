@@ -1,143 +1,48 @@
 #include "hx8537.h"
 #include <inttypes.h>
-
-void spiwrite(uint8_t c) {
-    if (_sclk == -1) {
-        // hardware SPI!
-        SPI.transfer(c);
-    } else {
-
-#if defined (USE_FAST_PINIO)
-        *clkport &= ~clkpinmask;
-
-    // Fast SPI bitbang swiped from LPD8806 library
-    for(uint8_t bit = 0x80; bit; bit >>= 1) {
-      if(c & bit) {
-	*mosiport |=  mosipinmask;
-      } else {
-	*mosiport &= ~mosipinmask;
-      }
-      *clkport |=  clkpinmask;
-      *clkport &= ~clkpinmask;
-    }
-#else
-        digitalWrite(_sclk, LOW);
-
-        // Fast SPI bitbang swiped from LPD8806 library
-        for(uint8_t bit = 0x80; bit; bit >>= 1) {
-            if(c & bit) {
-                digitalWrite(_mosi, HIGH);
-            } else {
-                digitalWrite(_mosi, LOW);
-            }
-            digitalWrite(_sclk, HIGH);
-            digitalWrite(_sclk, LOW);
-        }
-#endif
-    }
-}
+#include "drivers/mss_spi/mss_spi.h"
+#include "drivers/mss_gpio/mss_gpio.h"
 
 void writecommand(uint8_t c) {
-#if defined (USE_FAST_PINIO)
-    *dcport &= ~dcpinmask;
-  *csport &= ~cspinmask;
-#else
-    digitalWrite(_dc, LOW);
-    digitalWrite(_cs, LOW);
-#endif
-
-    if (_sclk == -1)
-        SPI.beginTransaction(spi_settings);
-
-    spiwrite(c);
-
-    if (_sclk == -1)
-        SPI.endTransaction();
-
-#if defined (USE_FAST_PINIO)
-    *csport |= cspinmask;
-#else
-    digitalWrite(_cs, HIGH);
-#endif
+    MSS_GPIO_set_output(_dc, 0);
+    MSS_SPI_init(&g_mss_spi1 );
+    MSS_SPI_configure_master_mode
+    (
+            &g_mss_spi1,
+            MSS_SPI_SLAVE_0,
+            MSS_SPI_MODE_0,
+            MSS_SPI_PCLK_DIV_2,
+            FRAME_SIZE
+    );
+    MSS_SPI_set_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
+    MSS_SPI_transfer_frame(&g_mss_spi1, c);
+    MSS_SPI_clear_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
+    MSS_GPIO_set_output(_dc, 1);
 }
 
 
 void writedata(uint8_t c) {
-#if defined (USE_FAST_PINIO)
-    *dcport |=  dcpinmask;
-  *csport &= ~cspinmask;
-#else
-    digitalWrite(_dc, HIGH);
-    digitalWrite(_cs, LOW);
-#endif
-
-    if (_sclk == -1)
-        SPI.beginTransaction(spi_settings);
-
-    spiwrite(c);
-    //Serial.print("Data 0x"); Serial.println(c, HEX);
-
-    if (_sclk == -1)
-        SPI.endTransaction();
-
-#if defined (USE_FAST_PINIO)
-    *csport |= cspinmask;
-#else
-    digitalWrite(_cs, HIGH);
-#endif
+    MSS_GPIO_set_output(_dc, 1);
+    MSS_SPI_init(&g_mss_spi1 );
+    MSS_SPI_configure_master_mode
+            (
+                    &g_mss_spi1,
+                    MSS_SPI_SLAVE_0,
+                    MSS_SPI_MODE_0,
+                    MSS_SPI_PCLK_DIV_2,
+                    FRAME_SIZE
+            );
+    MSS_SPI_set_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
+    MSS_SPI_transfer_frame(&g_mss_spi1, c);
+    MSS_SPI_clear_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
+    MSS_GPIO_set_output(_dc, 1);
 }
 
 
 
 void begin(uint8_t type) {
-    if (_rst >= 0) {
-        pinMode(_rst, OUTPUT);
-        digitalWrite(_rst, LOW);
-    }
-
-    pinMode(_dc, OUTPUT);
-    pinMode(_cs, OUTPUT);
-
-#if defined (USE_FAST_PINIO)
-    //Serial.print("CS port #"); Serial.println((uint32_t)digitalPinToPort(_cs), HEX);
-  csport    = portOutputRegister(digitalPinToPort(_cs));
-  //Serial.print("CSPort 0x"); Serial.println((uint32_t)csport, HEX);
-  cspinmask = digitalPinToBitMask(_cs);
-  //Serial.print("CSPinmask 0x"); Serial.println((uint32_t)cspinmask , HEX);
-  dcport    = portOutputRegister(digitalPinToPort(_dc));
-  //Serial.print("DCPort 0x"); Serial.println((uint32_t)dcport, HEX);
-  dcpinmask = digitalPinToBitMask(_dc);
-  //Serial.print("DCPinmask 0x"); Serial.println((uint32_t)dcpinmask , HEX);
-#endif
-
-    if(_sclk == -1) { // Using hardware SPI
-        SPI.begin();
-    } else {
-        pinMode(_sclk, OUTPUT);
-        pinMode(_mosi, OUTPUT);
-        pinMode(_miso, INPUT);
-#if defined (USE_FAST_PINIO)
-        clkport     = portOutputRegister(digitalPinToPort(_sclk));
-    clkpinmask  = digitalPinToBitMask(_sclk);
-    mosiport    = portOutputRegister(digitalPinToPort(_mosi));
-    mosipinmask = digitalPinToBitMask(_mosi);
-    *clkport   &= ~clkpinmask;
-    *mosiport  &= ~mosipinmask;
-#else
-        digitalWrite(_sclk, LOW);
-        digitalWrite(_mosi, LOW);
-#endif
-    }
-
-    // toggle RST low to reset
-    if (_rst >= 0) {
-        digitalWrite(_rst, HIGH);
-        delay(100);
-        digitalWrite(_rst, LOW);
-        delay(100);
-        digitalWrite(_rst, HIGH);
-        delay(150);
-    }
+    MSS_GPIO_init();
+    MSS_GPIO_config(MSS_GPIO_0, MSS_GPIO_OUTPUT_MODE);
 
 
     if (type == HX8357B) {
@@ -610,50 +515,11 @@ void invertDisplay(uint8_t i) {
     writecommand(i ? HX8357_INVON : HX8357_INVOFF);
 }
 
+void delay(uint16_t time) {
+    uint32_t i = 0;
+    uint32_t target = time * UNIT_TIME;
+    for (i = 0; i < target; ++i) {
 
-////////// stuff not actively being used, but kept for posterity
-
-
-uint8_t spiread(void) {
-    uint8_t r = 0;
-
-    if (_sclk == -1) {
-        SPI.beginTransaction(spi_settings);
-        r = SPI.transfer(0x00);
-        SPI.endTransaction();              // release the SPI bus
-    } else {
-
-        for (uint8_t i=0; i<8; i++) {
-            digitalWrite(_sclk, LOW);
-            digitalWrite(_sclk, HIGH);
-            r <<= 1;
-            if (digitalRead(_miso))
-                r |= 0x1;
-        }
     }
-    //Serial.print("read: 0x"); Serial.print(r, HEX);
-
-    return r;
-}
-
-uint8_t readdata(void) {
-    digitalWrite(_dc, HIGH);
-    digitalWrite(_cs, LOW);
-    uint8_t r = spiread();
-    digitalWrite(_cs, HIGH);
-
-    return r;
-}
-
-
-uint8_t readcommand8(uint8_t c, uint8_t index) {
-    digitalWrite(_dc, LOW);
-    digitalWrite(_cs, LOW);
-
-    spiwrite(c);
-
-    digitalWrite(_dc, HIGH);
-    uint8_t r = spiread();
-    digitalWrite(_cs, HIGH);
-    return r;
+    return;
 }

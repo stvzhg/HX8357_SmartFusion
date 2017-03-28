@@ -2,6 +2,8 @@
 #define HX8537_H
 
 #include <inttypes.h>
+#include "drivers/mss_spi/mss_spi.h"
+#include "drivers/mss_gpio/mss_gpio.h"
 
 #if defined (__arm__) || defined(ARDUINO_STM32_FEATHER)
 #if defined(TEENSYDUINO)
@@ -97,6 +99,10 @@ typedef volatile uint32_t RwReg;
 
 #define HX8357B_SETGAMMA 0xC8
 #define HX8357B_SETPANELRELATED  0xE9
+const uint8_t FRAME_SIZE = 8;
+const uint32_t UNIT_TIME = 25000;
+
+extern mss_gpio_id_t _dc = 0;
 
 
 
@@ -122,11 +128,10 @@ void     setRotation(uint8_t r);
 void     invertDisplay(uint8_t i);
 uint16_t color565(uint8_t r, uint8_t g, uint8_t b);
 
-void     spiwrite(uint8_t);
 void     writecommand(uint8_t c);
 void     writedata(uint8_t d);
 void     commandList(uint8_t *addr);
-uint8_t  spiread(void);
+void     delay(uint16_t time);
 
 uint8_t  tabcolor;
 
