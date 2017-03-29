@@ -1,5 +1,5 @@
-#ifndef HX8537_H
-#define HX8537_H
+#ifndef HX8357_H
+#define HX8357_H
 
 #include <inttypes.h>
 #include "drivers/mss_spi/mss_spi.h"
@@ -99,10 +99,12 @@ typedef volatile uint32_t RwReg;
 
 #define HX8357B_SETGAMMA 0xC8
 #define HX8357B_SETPANELRELATED  0xE9
-const uint8_t FRAME_SIZE = 8;
-const uint32_t UNIT_TIME = 25000;
+#define FRAME_SIZE 8
+#define UNIT_TIME 8000
 
-extern mss_gpio_id_t _dc = 0;
+#define HIGH 1
+#define LOW 0
+extern mss_gpio_id_t _dc;
 
 
 
@@ -134,6 +136,10 @@ void     commandList(uint8_t *addr);
 void     delay(uint16_t time);
 
 uint8_t  tabcolor;
+uint8_t rotation;
+uint16_t _width, _height;
+
+void	 digitalWrite(mss_gpio_id_t port, uint8_t value);
 
 #if defined (USE_FAST_PINIO)
 volatile RwReg *mosiport, *clkport, *dcport, *csport;

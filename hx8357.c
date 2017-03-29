@@ -1,7 +1,11 @@
-#include "hx8537.h"
+#include "hx8357.h"
 #include <inttypes.h>
 #include "drivers/mss_spi/mss_spi.h"
 #include "drivers/mss_gpio/mss_gpio.h"
+
+void	 digitalWrite(mss_gpio_id_t port, uint8_t value){
+	MSS_GPIO_set_output(port, value);
+}
 
 void writecommand(uint8_t c) {
     MSS_GPIO_set_output(_dc, 0);
@@ -10,8 +14,8 @@ void writecommand(uint8_t c) {
     (
             &g_mss_spi1,
             MSS_SPI_SLAVE_0,
-            MSS_SPI_MODE_0,
-            MSS_SPI_PCLK_DIV_2,
+            MSS_SPI_MODE0,
+            MSS_SPI_PCLK_DIV_4,
             FRAME_SIZE
     );
     MSS_SPI_set_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
@@ -28,8 +32,8 @@ void writedata(uint8_t c) {
             (
                     &g_mss_spi1,
                     MSS_SPI_SLAVE_0,
-                    MSS_SPI_MODE_0,
-                    MSS_SPI_PCLK_DIV_2,
+                    MSS_SPI_MODE0,
+                    MSS_SPI_PCLK_DIV_4,
                     FRAME_SIZE
             );
     MSS_SPI_set_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
@@ -263,14 +267,21 @@ void setAddrWindow(uint16_t x0, uint16_t y0, uint16_t x1,
 
 
 void pushColor(uint16_t color) {
-#if defined (USE_FAST_PINIO)
-    *dcport |=  dcpinmask;
-  *csport &= ~cspinmask;
-#else
     digitalWrite(_dc, HIGH);
-    digitalWrite(_cs, LOW);
-#endif
-
+    MSS_SPI_init(&g_mss_spi1 );
+	MSS_SPI_configure_master_mode
+	(
+			&g_mss_spi1,
+			MSS_SPI_SLAVE_0,
+			MSS_SPI_MODE0,
+			MSS_SPI_PCLK_DIV_4,
+			FRAME_SIZE
+	);
+	MSS_SPI_set_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
+	MSS_SPI_transfer_frame(&g_mss_spi1, color >> 8);
+	MSS_SPI_transfer_frame(&g_mss_spi1, color);
+	MSS_SPI_clear_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
+    /*
     if (_sclk == -1)
         SPI.beginTransaction(spi_settings);
 
@@ -279,12 +290,7 @@ void pushColor(uint16_t color) {
 
     if (_sclk == -1)
         SPI.endTransaction();
-
-#if defined (USE_FAST_PINIO)
-    *csport |= cspinmask;
-#else
-    digitalWrite(_cs, HIGH);
-#endif
+	*/
 }
 
 void drawPixel(int16_t x, int16_t y, uint16_t color) {
@@ -294,16 +300,7 @@ void drawPixel(int16_t x, int16_t y, uint16_t color) {
 
     setAddrWindow(x,y,x,y);
 
-#if defined (USE_FAST_PINIO)
-    *dcport |=  dcpinmask;
-  *csport &= ~cspinmask;
-#else
     digitalWrite(_dc, HIGH);
-    digitalWrite(_cs, LOW);
-#endif
-
-    if (_sclk == -1)
-        SPI.beginTransaction(spi_settings);
 
     /* 18 bit hack for testing */
     /*
@@ -316,18 +313,23 @@ void drawPixel(int16_t x, int16_t y, uint16_t color) {
     spiwrite(g);
     spiwrite(b);
     */
-
+    /*
     spiwrite(color >> 8);
     spiwrite(color);
-
-    if (_sclk == -1)
-        SPI.endTransaction();
-
-#if defined (USE_FAST_PINIO)
-    *csport |= cspinmask;
-#else
-    digitalWrite(_cs, HIGH);
-#endif
+	*/
+    MSS_SPI_init(&g_mss_spi1 );
+	MSS_SPI_configure_master_mode
+	(
+			&g_mss_spi1,
+			MSS_SPI_SLAVE_0,
+			MSS_SPI_MODE0,
+			MSS_SPI_PCLK_DIV_4,
+			FRAME_SIZE
+	);
+	MSS_SPI_set_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
+	MSS_SPI_transfer_frame(&g_mss_spi1, color >> 8);
+	MSS_SPI_transfer_frame(&g_mss_spi1, color);
+	MSS_SPI_clear_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
 }
 
 
@@ -344,15 +346,11 @@ void drawFastVLine(int16_t x, int16_t y, int16_t h,
 
     uint8_t hi = color >> 8, lo = color;
 
-#if defined (USE_FAST_PINIO)
-    *dcport |=  dcpinmask;
-  *csport &= ~cspinmask;
-#else
+
     digitalWrite(_dc, HIGH);
-    digitalWrite(_cs, LOW);
-#endif
 
 
+    /*
     if (_sclk == -1)
         SPI.beginTransaction(spi_settings);
 
@@ -363,12 +361,22 @@ void drawFastVLine(int16_t x, int16_t y, int16_t h,
 
     if (_sclk == -1)
         SPI.endTransaction();
-
-#if defined (USE_FAST_PINIO)
-    *csport |= cspinmask;
-#else
-    digitalWrite(_cs, HIGH);
-#endif
+	*/
+    MSS_SPI_init(&g_mss_spi1 );
+	MSS_SPI_configure_master_mode
+	(
+			&g_mss_spi1,
+			MSS_SPI_SLAVE_0,
+			MSS_SPI_MODE0,
+			MSS_SPI_PCLK_DIV_4,
+			FRAME_SIZE
+	);
+	MSS_SPI_set_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
+    while(h--){
+		MSS_SPI_transfer_frame(&g_mss_spi1, hi);
+		MSS_SPI_transfer_frame(&g_mss_spi1, lo);
+    }
+    MSS_SPI_clear_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
 }
 
 
@@ -382,14 +390,10 @@ void drawFastHLine(int16_t x, int16_t y, int16_t w,
 
     uint8_t hi = color >> 8, lo = color;
 
-#if defined (USE_FAST_PINIO)
-    *dcport |=  dcpinmask;
-  *csport &= ~cspinmask;
-#else
-    digitalWrite(_dc, HIGH);
-    digitalWrite(_cs, LOW);
-#endif
 
+    digitalWrite(_dc, HIGH);
+
+    /*
     if (_sclk == -1)
         SPI.beginTransaction(spi_settings);
 
@@ -400,12 +404,23 @@ void drawFastHLine(int16_t x, int16_t y, int16_t w,
 
     if (_sclk == -1)
         SPI.endTransaction();
+	*/
+    MSS_SPI_init(&g_mss_spi1 );
+	MSS_SPI_configure_master_mode
+	(
+			&g_mss_spi1,
+			MSS_SPI_SLAVE_0,
+			MSS_SPI_MODE0,
+			MSS_SPI_PCLK_DIV_4,
+			FRAME_SIZE
+	);
+	MSS_SPI_set_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
+    while(w--){
+    	MSS_SPI_transfer_frame(&g_mss_spi1, hi);
+		MSS_SPI_transfer_frame(&g_mss_spi1, lo);
+    }
+    MSS_SPI_clear_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
 
-#if defined (USE_FAST_PINIO)
-    *csport |= cspinmask;
-#else
-    digitalWrite(_cs, HIGH);
-#endif
 }
 
 void fillScreen(uint16_t color) {
@@ -439,14 +454,8 @@ void fillRect(int16_t x, int16_t y, int16_t w, int16_t h,
     b <<= 3;
     */
 
-#if defined (USE_FAST_PINIO)
-    *dcport |=  dcpinmask;
-  *csport &= ~cspinmask;
-#else
     digitalWrite(_dc, HIGH);
-    digitalWrite(_cs, LOW);
-#endif
-
+    /*
     if (_sclk == -1)
         SPI.beginTransaction(spi_settings);
 
@@ -459,12 +468,25 @@ void fillRect(int16_t x, int16_t y, int16_t w, int16_t h,
 
     if (_sclk == -1)
         SPI.endTransaction();
+    */
+    MSS_SPI_init(&g_mss_spi1 );
+	MSS_SPI_configure_master_mode
+	(
+			&g_mss_spi1,
+			MSS_SPI_SLAVE_0,
+			MSS_SPI_MODE0,
+			MSS_SPI_PCLK_DIV_4,
+			FRAME_SIZE
+	);
+	MSS_SPI_set_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
+	for(y=h; y>0; y--){
+		for(x=w; x>0; x--){
+			MSS_SPI_transfer_frame(&g_mss_spi1, hi);
+			MSS_SPI_transfer_frame(&g_mss_spi1, lo);
+		}
+	}
+	MSS_SPI_clear_slave_select(&g_mss_spi1, MSS_SPI_SLAVE_0);
 
-#if defined (USE_FAST_PINIO)
-    *csport |= cspinmask;
-#else
-    digitalWrite(_cs, HIGH);
-#endif
 }
 
 
