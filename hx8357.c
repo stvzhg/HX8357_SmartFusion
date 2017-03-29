@@ -30,7 +30,7 @@
 #endif
 
 #ifndef abs
-#define abs(a,b) (((a) > (b)) ? (a - b) : (b - a))
+#define abs(a) (((a) > (0)) ? (a) : (0 - a))
 #endif
 
 #ifndef _swap_int16_t
@@ -666,21 +666,6 @@ void endWrite(){
     // Overwrite in subclasses if startWrite is defined!
 }
 
-void drawFastVLine(int16_t x, int16_t y,
-                                 int16_t h, uint16_t color) {
-    // Update in subclasses if desired!
-    startWrite();
-    writeLine(x, y, x, y+h-1, color);
-    endWrite();
-}
-
-void drawFastHLine(int16_t x, int16_t y,
-                                 int16_t w, uint16_t color) {
-    // Update in subclasses if desired!
-    startWrite();
-    writeLine(x, y, x+w-1, y, color);
-    endWrite();
-}
 
 #define distDiff(a,b) ((max(a,b) - min(a,b))+1)
 
