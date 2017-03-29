@@ -4,6 +4,7 @@
 #include <inttypes.h>
 #include "drivers/mss_spi/mss_spi.h"
 #include "drivers/mss_gpio/mss_gpio.h"
+#include "gfxfont.h"
 
 #if defined (__arm__) || defined(ARDUINO_STM32_FEATHER)
 #if defined(TEENSYDUINO)
@@ -141,8 +142,66 @@ uint16_t _width, _height;
 
 void	 digitalWrite(mss_gpio_id_t port, uint8_t value);
 
-#if defined (USE_FAST_PINIO)
-volatile RwReg *mosiport, *clkport, *dcport, *csport;
-  uint32_t  mosipinmask, clkpinmask, cspinmask, dcpinmask;
-#endif
-#endif
+//start from here is GFX
+void     startWrite(void);
+void     endWrite(void);
+
+void     drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color),
+void     drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
+
+void
+        drawCircle(int16_t x0, int16_t y0, int16_t r, uint16_t color),
+        drawCircleHelper(int16_t x0, int16_t y0, int16_t r, uint8_t cornername,
+                         uint16_t color),
+        fillCircle(int16_t x0, int16_t y0, int16_t r, uint16_t color),
+        fillCircleHelper(int16_t x0, int16_t y0, int16_t r, uint8_t cornername,
+                         int16_t delta, uint16_t color),
+        drawTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
+                     int16_t x2, int16_t y2, uint16_t color),
+        fillTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
+                     int16_t x2, int16_t y2, uint16_t color),
+        drawRoundRect(int16_t x0, int16_t y0, int16_t w, int16_t h,
+                      int16_t radius, uint16_t color),
+        fillRoundRect(int16_t x0, int16_t y0, int16_t w, int16_t h,
+                      int16_t radius, uint16_t color),
+        drawBitmap(int16_t x, int16_t y, uint8_t *bitmap,
+                   int16_t w, int16_t h, uint16_t color, int32_t bg),
+        drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap,
+                    int16_t w, int16_t h, uint16_t color),
+        drawChar(int16_t x, int16_t y, unsigned char c, uint16_t color,
+                 uint16_t bg, uint8_t size),
+        setCursor(int16_t x, int16_t y),
+        setTextColor(uint16_t c, int32_t bg),
+        setTextSize(uint8_t s),
+        setTextWrap(uint8_t w),
+        cp437(uint8_t x),
+        setFont(const GFXfont *f),
+        getTextBounds(char *string, int16_t x, int16_t y,
+                      int16_t *x1, int16_t *y1, uint16_t *w, uint16_t *h);
+
+void   write(uint8_t);
+
+int16_t height(void) const;
+int16_t width(void) const;
+
+uint8_t getRotation(void) const;
+
+// get current cursor position (get rotation safe maximum values, using: width() for x, height() for y)
+int16_t getCursorX(void) const;
+int16_t getCursorY(void) const;
+
+//may be const?
+int16_t
+        WIDTH, HEIGHT;   // This is the 'raw' display w/h - never changes
+int16_t
+        cursor_x, cursor_y;
+uint16_t
+        textcolor, textbgcolor;
+uint8_t
+        textsize;
+uint8_t
+        wrap,   // If set, 'wrap' text at right edge of display
+        _cp437; // If set, use correct CP437 charset (default is off)
+GFXfont
+        *gfxFont;
+
