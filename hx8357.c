@@ -89,9 +89,15 @@ void begin(uint8_t type) {
     cursor_y  = cursor_x    = 0;
     textsize  = 1;
     textcolor = textbgcolor = 0xFFFF;
+<<<<<<< HEAD
     wrap      = HIGH;
     _cp437    = LOW;
     gfxFont   = (void *)0;
+=======
+    wrap      = true;
+    _cp437    = false;
+    gfxFont   = NULL;
+>>>>>>> 9c79c2342a68a936ef2bb8d46bbb0e804ebf5b5d
 
     if (type == HX8357B) {
         //Serial.println("linux HX8357B");
@@ -984,6 +990,7 @@ void drawChar(int16_t x, int16_t y, unsigned char c,
         if(!_cp437 && (c >= 176)) c++; // Handle 'classic' charset behavior
 
         startWrite();
+<<<<<<< HEAD
         int8_t i = 0;
         int8_t j = 0;
         for(i=0; i<6; i++ ) {
@@ -991,6 +998,13 @@ void drawChar(int16_t x, int16_t y, unsigned char c,
             if(i < 5) line = pgm_read_byte(font+(c*5)+i);
             else      line = 0x0;
             for(j=0; j<8; j++, line >>= 1) {
+=======
+        for(int8_t i=0; i<6; i++ ) {
+            uint8_t line;
+            if(i < 5) line = pgm_read_byte(font+(c*5)+i);
+            else      line = 0x0;
+            for(int8_t j=0; j<8; j++, line >>= 1) {
+>>>>>>> 9c79c2342a68a936ef2bb8d46bbb0e804ebf5b5d
                 if(line & 0x1) {
                     if(size == 1) writePixel(x+i, y+j, color);
                     else          writeFillRect(x+(i*size), y+(j*size), size, size, color);
@@ -1117,11 +1131,19 @@ void setCursor(int16_t x, int16_t y) {
     cursor_y = y;
 }
 
+<<<<<<< HEAD
 int16_t getCursorX(void) {
     return cursor_x;
 }
 
 int16_t getCursorY(void) {
+=======
+int16_t getCursorX(void) const {
+    return cursor_x;
+}
+
+int16_t getCursorY(void) const {
+>>>>>>> 9c79c2342a68a936ef2bb8d46bbb0e804ebf5b5d
     return cursor_y;
 }
 
@@ -1139,6 +1161,7 @@ void setTextWrap(uint8_t w) {
     wrap = w;
 }
 
+<<<<<<< HEAD
 uint8_t getRotation(void) {
     return rotation;
 }
@@ -1152,6 +1175,12 @@ void printStr(char* str, int16_t x, int16_t y){
 	}
 }
 
+=======
+uint8_t getRotation(void) const {
+    return rotation;
+}
+
+>>>>>>> 9c79c2342a68a936ef2bb8d46bbb0e804ebf5b5d
 // Enable (or disable) Code Page 437-compatible charset.
 // There was an error in glcdfont.c for the longest time -- one character
 // (#176, the 'light shade' block) was missing -- this threw off the index
@@ -1270,11 +1299,19 @@ void getTextBounds(char *str, int16_t x, int16_t y,
 
 
 // Return the size of the display (per current rotation)
+<<<<<<< HEAD
 int16_t width(void)  {
     return _width;
 }
 
 int16_t height(void)  {
+=======
+int16_t width(void) const {
+    return _width;
+}
+
+int16_t height(void) const {
+>>>>>>> 9c79c2342a68a936ef2bb8d46bbb0e804ebf5b5d
     return _height;
 }
 
