@@ -146,13 +146,9 @@ void	 digitalWrite(mss_gpio_id_t port, uint8_t value);
 void     startWrite(void);
 void     endWrite(void);
 
-<<<<<<< HEAD
 void writePixel(int16_t x, int16_t y, uint16_t color);
 
 void     drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color);
-=======
-void     drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color),
->>>>>>> 9c79c2342a68a936ef2bb8d46bbb0e804ebf5b5d
 void     drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
 
 void
@@ -186,7 +182,6 @@ void
                       int16_t *x1, int16_t *y1, uint16_t *w, uint16_t *h);
 
 void   write(uint8_t);
-<<<<<<< HEAD
 void   printStr(char* str, int16_t x, int16_t y);
 
 int16_t height(void);
@@ -197,17 +192,6 @@ uint8_t getRotation(void);
 // get current cursor position (get rotation safe maximum values, using: width() for x, height() for y)
 int16_t getCursorX(void);
 int16_t getCursorY(void);
-=======
-
-int16_t height(void) const;
-int16_t width(void) const;
-
-uint8_t getRotation(void) const;
-
-// get current cursor position (get rotation safe maximum values, using: width() for x, height() for y)
-int16_t getCursorX(void) const;
-int16_t getCursorY(void) const;
->>>>>>> 9c79c2342a68a936ef2bb8d46bbb0e804ebf5b5d
 
 //may be const?
 int16_t
@@ -224,7 +208,4 @@ uint8_t
 GFXfont
         *gfxFont;
 
-<<<<<<< HEAD
 #endif
-=======
->>>>>>> 9c79c2342a68a936ef2bb8d46bbb0e804ebf5b5d

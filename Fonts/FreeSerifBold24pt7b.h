@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 const uint8_t FreeSerifBold24pt7bBitmaps[] = {
-=======
-const uint8_t FreeSerifBold24pt7bBitmaps[] PROGMEM = {
->>>>>>> 9c79c2342a68a936ef2bb8d46bbb0e804ebf5b5d
   0x3C, 0x7E, 0xFE, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x7E, 0x7E, 0x7C, 0x7C,
   0x3C, 0x3C, 0x38, 0x38, 0x38, 0x38, 0x18, 0x10, 0x10, 0x10, 0x00, 0x00,
   0x00, 0x00, 0x3C, 0x7E, 0xFF, 0xFF, 0xFF, 0xFF, 0x7E, 0x3C, 0x70, 0x07,
@@ -658,11 +654,7 @@ const uint8_t FreeSerifBold24pt7bBitmaps[] PROGMEM = {
   0x03, 0xE0, 0x00, 0x0F, 0x80, 0x00, 0xFF, 0xC0, 0x47, 0xFF, 0xC3, 0x9F,
   0xFF, 0xFF, 0x70, 0x7F, 0xF8, 0x80, 0x7F, 0xC0, 0x00, 0x3E, 0x00 };
 
-<<<<<<< HEAD
 const GFXglyph FreeSerifBold24pt7bGlyphs[] = {
-=======
-const GFXglyph FreeSerifBold24pt7bGlyphs[] PROGMEM = {
->>>>>>> 9c79c2342a68a936ef2bb8d46bbb0e804ebf5b5d
   {     0,   0,   0,  12,    0,    1 },   // 0x20 ' '
   {     0,   8,  34,  16,    4,  -32 },   // 0x21 '!'
   {    34,  17,  13,  26,    4,  -32 },   // 0x22 '"'
@@ -759,11 +751,7 @@ const GFXglyph FreeSerifBold24pt7bGlyphs[] PROGMEM = {
   {  7753,  14,  42,  19,    4,  -33 },   // 0x7D '}'
   {  7827,  22,   7,  24,    1,  -14 } }; // 0x7E '~'
 
-<<<<<<< HEAD
 const GFXfont FreeSerifBold24pt7b  = {
-=======
-const GFXfont FreeSerifBold24pt7b PROGMEM = {
->>>>>>> 9c79c2342a68a936ef2bb8d46bbb0e804ebf5b5d
   (uint8_t  *)FreeSerifBold24pt7bBitmaps,
   (GFXglyph *)FreeSerifBold24pt7bGlyphs,
   0x20, 0x7E, 56 };
