@@ -544,8 +544,8 @@ uint16_t color565(uint8_t r, uint8_t g, uint8_t b) {
 #define MADCTL_MX  0x40
 #define MADCTL_MV  0x20
 #define MADCTL_ML  0x10
-#define MADCTL_RGB 0x00
-#define MADCTL_BGR 0x08
+#define MADCTL_RGB 0x08
+#define MADCTL_BGR 0x00
 #define MADCTL_MH  0x04
 
 void setRotation(uint8_t m) {
@@ -559,7 +559,7 @@ void setRotation(uint8_t m) {
             _height = HX8357_TFTHEIGHT;
             break;
         case 1:
-            writedata(MADCTL_MV | MADCTL_MY | MADCTL_RGB);
+            writedata(MADCTL_MV /*0*/ | /*MADCTL_MY*/ 0 | MADCTL_RGB);
             _width  = HX8357_TFTHEIGHT;
             _height = HX8357_TFTWIDTH;
             break;
