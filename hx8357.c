@@ -81,6 +81,7 @@ void writedata(uint8_t c) {
 void begin(uint8_t type) {
     MSS_GPIO_init();
     MSS_GPIO_config(MSS_GPIO_0, MSS_GPIO_OUTPUT_MODE);
+    MSS_GPIO_config(MSS_GPIO_1, MSS_GPIO_OUTPUT_MODE);
     WIDTH = HX8357_TFTWIDTH;
     HEIGHT = HX8357_TFTHEIGHT;
     _width    = WIDTH;
@@ -92,6 +93,10 @@ void begin(uint8_t type) {
     wrap      = HIGH;
     _cp437    = LOW;
     gfxFont   = (void *)0;
+    digitalWrite(_rst, LOW);
+    digitalWrite(_rst, HIGH);
+    digitalWrite(_rst, LOW);
+    digitalWrite(_rst, HIGH);
 
     if (type == HX8357B) {
         //Serial.println("linux HX8357B");
@@ -554,7 +559,7 @@ void setRotation(uint8_t m) {
     rotation = m % 4; // can't be higher than 3
     switch (rotation) {
         case 0:
-            writedata(MADCTL_MX | MADCTL_MY | MADCTL_RGB);
+            writedata(MADCTL_MX /*| MADCTL_MY*/ | MADCTL_RGB);
             _width  = HX8357_TFTWIDTH;
             _height = HX8357_TFTHEIGHT;
             break;

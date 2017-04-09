@@ -106,6 +106,7 @@ typedef volatile uint32_t RwReg;
 #define HIGH 1
 #define LOW 0
 extern mss_gpio_id_t _dc;
+extern mss_gpio_id_t _rst;
 
 
 
